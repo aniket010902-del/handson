@@ -1,0 +1,23 @@
+- name: Deploy Html
+  hosts: localhost
+  become: yes
+ 
+  tasks:
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+
+    - name: Copy html to web
+      copy:
+        src: index.html
+        dest: /var/www/html/index.html
+
+ 
+    - name: Start Nginix Service
+      service:
+        name: nginx
+        state: started
+        
+
